@@ -73,15 +73,6 @@ To remove all custom DNS and return to DHCP-provided settings:
 2. Select your network service(s)
 3. Choose option `0` (default) from the DNS provider list
 
-📂 Project Structure
-
-```bash
-mac-dns-switcher/
-│
-├── main.py # Main script to run
-├── README.md # You're reading it :)
-```
-
 ## 🛡️ Notes & Warnings
 
 - This script only works on macOS, using the built-in networksetup tool.
