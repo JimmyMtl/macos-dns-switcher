@@ -7,7 +7,9 @@ def choose_services(services):
     for idx, service in enumerate(services):
         print(f"{idx}. {service}")
 
-    choices = input("Enter the numbers of the services you want to configure (comma-separated): ")
+    choices = input(
+        "Enter the numbers of the services you want to configure (comma-separated): "
+    )
     selected = []
     for choice in choices.split(","):
         try:
