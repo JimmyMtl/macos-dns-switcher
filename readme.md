@@ -1,7 +1,7 @@
 # 🛜🍎 macOS DNS Switcher (Python)
 
 A command-line utility to programmatically change the DNS settings of your macOS network services using Python and
-`networksetup`.
+`networksetup`. It is based on [Yggland datas](https://yggland.fr/FAQ-Tutos/).
 
 ---
 
