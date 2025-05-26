@@ -1,5 +1,5 @@
 [project]
-name = "macos-dns-updater"
+name = "macos-dns-switcher"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
