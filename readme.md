@@ -40,7 +40,7 @@ cd mac-dns-switcher
 Run the script with administrator privileges:
 
 ```bash
-sudo python ./src/main.py
+sudo python ./mdns/main.py
 ```
 
 ## 🧭 Interactive Menu
