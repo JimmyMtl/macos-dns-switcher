@@ -2,16 +2,11 @@ name: Build & Publish to PyPI
 
 on:
   release:
-    types: [published]  # Trigger only when a GitHub Release is created
+    types: [published]
 
 jobs:
   publish:
-    name: Build and Publish
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
-      id-token: write
 
     steps:
       - uses: actions/checkout@v4
@@ -20,6 +15,18 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+
+      - name: Extract version from release tag
+        id: version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Update version in pyproject.toml
+        run: |
+          sed -i "s/^version = \".*\"/version = \"$VERSION\"/" pyproject.toml
+          echo "Updated version to $VERSION"
+          cat pyproject.toml
 
       - name: Install build tools
         run: pip install build twine
