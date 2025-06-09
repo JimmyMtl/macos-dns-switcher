@@ -22,13 +22,17 @@ jobs:
           VERSION=${GITHUB_REF#refs/tags/v}
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
-      - name: Extract version and update pyproject.toml
+      - name: Extract version and patch pyproject.toml
         run: |
-          VERSION="${GITHUB_REF##*/v}"
+          VERSION="${GITHUB_REF#refs/tags/}"
           echo "Extracted version: $VERSION"
-          sed -i'' "s/^version = \".*\"/version = \"$VERSION\"/" pyproject.toml
+      
+          # Use GNU sed compatible inline replace (no backup)
+          sed -i "s/^version = \".*\"/version = \"$VERSION\"/" pyproject.toml
+      
           echo "Updated pyproject.toml:"
           grep "^version" pyproject.toml
+
 
 
 
