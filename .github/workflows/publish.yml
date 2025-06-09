@@ -22,12 +22,14 @@ jobs:
           VERSION=${GITHUB_REF#refs/tags/v}
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
-      - name: Update version in pyproject.toml
+      - name: Extract version and update pyproject.toml
         run: |
-          VERSION="${GITHUB_REF#refs/tags/v}"
-          echo "Updating pyproject.toml version to $VERSION"
+          VERSION="${GITHUB_REF##*/v}"
+          echo "Extracted version: $VERSION"
           sed -i'' "s/^version = \".*\"/version = \"$VERSION\"/" pyproject.toml
-          cat pyproject.toml
+          echo "Updated pyproject.toml:"
+          grep "^version" pyproject.toml
+
 
 
       - name: Install build tools
