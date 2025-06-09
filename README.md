@@ -21,70 +21,88 @@ A command-line utility to programmatically change the DNS settings of your macOS
 ## 🛠 Requirements
 
 - macOS
-- Python 3.x
+- Python 3.7+
 - Admin privileges (`sudo` required to change network settings)
 
 ---
 
 ## 🚀 Installation
 
-Clone the project:
+You can install via `pip` (if published on PyPI):
 
 ```bash
-git clone https://github.com/yourusername/mac-dns-switcher.git
-cd mac-dns-switcher
+pip install macos-dns-switcher
 ```
+
+Or install from source:
+
+```bash
+git clone https://github.com/JimmyMtl/macos-dns-switcher.git
+cd macos-dns-switcher
+pip install .
+```
+
+---
 
 ## ▶️ Usage
 
-Run the script with administrator privileges:
+Run the CLI tool with:
 
 ```bash
-sudo python ./mdns/main.py
+sudo mdns
 ```
 
-## 🧭 Interactive Menu
+### 🧭 Interactive Flow
 
 1. Select one or more network services (e.g., Wi-Fi, Ethernet)
-
 2. Choose a DNS provider:
-    - 0 – Default (reset DNS to DHCP)
-    - 1 – OpenDNS
-    - 2 – Cloudflare
-    - 3 – Quad9
+    - `0` – Default (reset to DHCP)
+    - `1` – OpenDNS
+    - `2` – Cloudflare
+    - `3` – Quad9
+3. The tool applies the selected DNS settings to all selected services
 
-3. The script will apply the selected DNS settings to the chosen services.
+---
 
 ## 🔍 Verifying DNS Settings
 
-To check the DNS servers currently set on a network service, you can run:
+To confirm the DNS settings applied to a service:
 
 ```bash
 networksetup -getdnsservers "Wi-Fi"
 ```
 
-Replace `Wi-Fi` with the name of any other service you've configured.
+Replace `"Wi-Fi"` with your actual service name if different.
+
+---
 
 ## 🧼 Reset DNS to Default
 
-To remove all custom DNS and return to DHCP-provided settings:
+To remove custom DNS settings and restore DHCP:
 
-1. Run the script
-2. Select your network service(s)
-3. Choose option `0` (default) from the DNS provider list
+```bash
+sudo mdns
+```
+
+Then:
+- Select the target service(s)
+- Choose option `0` to reset
+
+---
 
 ## 🛡️ Notes & Warnings
 
-- This script only works on macOS, using the built-in networksetup tool.
+- Only works on **macOS** via `networksetup`
+- DNS settings apply system-wide and may not persist if overwritten by VPNs or profiles
 
-- It does not persist changes across different users or reboots unless the system is configured to retain them.
+---
 
 ## 📄 License
 
 MIT License
 
+---
+
 ## 🙋 Support
 
 Feel free to open an issue or submit a pull request if you’d like to contribute or request a feature!
-
----
